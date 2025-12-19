@@ -27,8 +27,8 @@ RELAY_PIN = 17
 # 게임 밸런스 및 시간 설정
 TOTAL_GAME_TIME = 60    
 Q_TIME_LIMIT = 10       
-RELAY_PENALTY_TIME = 1.0     # ***수정: 1.0초로 변경***
-DISPLAY_PENALTY_TIME = 1.0 
+RELAY_PENALTY_TIME = 1.0 # 릴레이 작동 시간
+DISPLAY_PENALTY_TIME = 1.0 # 오답 패널 시간
 
 # --- 2. HARDWARE & UTILITIES (하드웨어 및 유틸리티) ---
 relay = None
@@ -151,7 +151,7 @@ def main():
     
     score = 0
     game_start_ts = 0
-    last_penalty_end_ts = 0 # ***추가: 페널티가 끝난 시각을 저장***
+    last_penalty_end_ts = 0 # 페널티가 끝난 시각을 저장
     q_start_ts = 0
     
     penalty_mode = False
@@ -169,7 +169,7 @@ def main():
         now = time.time()
         dt = clock.tick(FPS) / 1000.0
         
-        # ***로직 수정: 릴레이 작동 중이 아닐 때만 게임 시간 업데이트***
+        # 릴레이 작동 중이 아닐 때만 게임 시간 업데이트
         if not penalty_mode:
             current_game_time = now - game_start_ts
         else:
@@ -235,7 +235,7 @@ def main():
                     btn.draw(screen, i+1)
 
         elif state == "GAME":
-            # ***수정: 페널티 중이라면 total_remain 계산을 정지된 시간 기준으로***
+            # 페널티 중이라면 total_remain 계산을 정지된 시간 기준으로
             if not penalty_mode:
                 total_remain = TOTAL_GAME_TIME - (now - game_start_ts)
             else:
@@ -283,7 +283,7 @@ def main():
                 if now - penalty_start_ts >= RELAY_PENALTY_TIME:
                     # 릴레이/페널티 종료 (1.0초 후)
                     
-                    # ***핵심 수정: 게임 시간 정지 보정 로직***
+                    # 게임 시간 정지 보정 로직
                     time_paused = now - penalty_start_ts 
                     game_start_ts += time_paused # 게임 시작 시각을 늦춰 시간을 보정
                     last_penalty_end_ts = now
