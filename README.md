@@ -20,20 +20,7 @@
 * **Graphics:** Pygame
 * **Hardware Control:** gpiozero (Raspberry Pi 전용)
 * **Storage:** JSON (Ranking 데이터 저장)
-
-## 로직을 구성
-```bash
-project/
-├── main.py
-├── fonts/
-│   └── NanumGothic.ttf
-├── images/
-│   ├── 카테고리 1/
-│   │   └── category1_set1(문제의 세트)_no01(문제번호)_ns3(5지선다 중 문제 정답번호).jpg
-│   └── 카테고리 2/
-│       └── quiz_ns5.png
-└── rank.json                  # 게임 실행 시 자동 생성
-
+* 
 ---
 
 ## 🚀 시작하기 (Getting Started)
