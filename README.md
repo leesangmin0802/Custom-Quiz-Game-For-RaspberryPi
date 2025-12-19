@@ -30,6 +30,7 @@
 ```bash
 pip install pygame
 
+### 2. 해당 폴더로 로직을 구성
 project/
 ├── main.py
 ├── fonts/
