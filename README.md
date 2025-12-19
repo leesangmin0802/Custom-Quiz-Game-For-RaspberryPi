@@ -22,6 +22,7 @@
 * **Storage:** JSON (Ranking 데이터 저장)
 
 ## 로직을 구성
+```bash
 project/
 ├── main.py
 ├── fonts/
